@@ -1,9 +1,15 @@
 import React from 'react';
 import formatCurrency from "../utils";
+import Fade from "react-reveal/Fade";
+import Modal from "react-modal";
 
 export default function Products(props) {
-    return (
+    
+  
+  
+  return (
         <div>
+           <Fade bottom cascade>
             <ul className="products">
                 {props.products.map(product => (
                     <li key={product._id}>
@@ -25,7 +31,9 @@ export default function Products(props) {
                   </li>
                 ))}
               </ul>
+            </Fade>
                
         </div>
     )
 }
+
