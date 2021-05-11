@@ -3,6 +3,9 @@ import data from "./data.json";
 
 //importing comps
 import Products from "./components/Products";
+import Filter from "./components/Filter";
+import Cart from "./components/Cart";
+
 
 class App extends React.Component {
 
@@ -10,11 +13,85 @@ class App extends React.Component {
     super();
     this.state = {
       products : data.products,
+      cartItems: [],
       size: "",
       sort: "",
       
     };
   }
+
+
+  removeFromCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    this.setState({
+      cartItems: cartItems.filter((x) => x._id !== product._id),
+    });
+  };
+  addToCart = (product) => {
+    const cartItems = this.state.cartItems.slice();
+    let alreadyInCart = false;
+    cartItems.forEach((item) => {
+      if (item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItems.push({ ...product, count: 1 });
+    }
+    this.setState({ cartItems });
+  };
+
+
+
+
+
+
+
+
+  sortproducts = (event) => {
+    const sort =  event.target.value;
+    console.log(event.target.value);
+    this.setState((state) => ({
+      sort: sort,
+      products: this.state.products
+        .slice()
+        .sort((a,b) => 
+          sort === "lowest"
+          ? a.price > b.price
+            ? 1
+            : -1
+          : sort === "highest"
+          ? a.price < b.price
+            ? 1
+            : -1
+          : a._id < b._id
+          ? 1
+          : -1
+          
+          ),
+    }));
+  };
+
+  filterproducts = (event) => {
+    const num = 
+    // impl
+    console.log(event.target.value);
+    if (event.target.value === "") {
+      this.setState({ size: event.target.value, products: data.products });
+    } else {
+      this.setState({
+        size: event.target.value,
+        products: data.products.filter(
+          (product) => product.size.indexOf(event.target.value) >= 0
+        ),
+      });
+    }
+  };
+
+
+
+
 
   render(){
     return (
@@ -25,11 +102,24 @@ class App extends React.Component {
               <main>
                 <div className="content">
                   <div className="main">
-                     <Products products={this.state.products}></Products>
+                     <Filter count= {this.state.products.length}
+                            size={this.state.size}
+                            sort={this.state.sort}
+                            filterproducts={this.filterproducts}
+                            sortproducts={this.sortproducts}
+                     ></Filter>
+                     <Products
+                products={this.state.products}
+                addToCart={this.addToCart}
+              ></Products>
+            </div>
+            <div className="sidebar">
+              <Cart
+                cartItems={this.state.cartItems}
+                removeFromCart={this.removeFromCart}
+              />
                   </div>
-                  <div className="sidebar">
-                    cart items
-                  </div>
+                 
                 </div>              
               </main>
            

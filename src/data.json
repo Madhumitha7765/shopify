@@ -5,7 +5,7 @@
         "image": "/images/product1.jpg",
         "title": "product1",
         "description": "product desp 1",
-        "category": ["Clothing", "Essentials"],
+        "size": ["Clothing", "Essentials"],
         "price": 29.9
       },
       {
@@ -13,7 +13,7 @@
         "image": "/images/product2.jpg",
         "title": "product2",
         "description": "product desp 2",
-        "category": ["Clothing", "Essentials"],
+        "size": ["Clothing", "Essentials"],
         "price": 18.9
       },
       {
@@ -21,7 +21,7 @@
         "image": "/images/product3.jpg",
         "title": "product3",
         "description": "product desp 3",
-        "category": ["Clothing", "Essentials"],
+        "size": ["Clothing", "Essentials"],
         "price": 14.9
       },
       {
@@ -29,7 +29,7 @@
         "image": "/images/product4.jpg",
         "title": "product4",
         "description": "product desp 4",      
-        "category": ["Furniture","Essentials"],
+        "size": ["Furniture","Essentials"],
         "price": 25.9
       },
       {
@@ -37,7 +37,7 @@
         "image": "/images/product5.jpg",
         "title": "product5",
         "description": "product desp 5",        
-        "category": ["Edibles", "Snack","Essentials"],
+        "size": ["Edibles", "Snack","Essentials"],
         "price": 10.9
       },
       {
@@ -45,7 +45,7 @@
         "image": "/images/product6.jpg",
         "title": "product6",
         "description": "product desp 6",        
-        "category": ["Furniture", "Essential"],
+        "size": ["Furniture", "Essential"],
         "price": 49.9
       }
     ]
