@@ -1,16 +1,24 @@
 import React from 'react'
+import { connect } from "react-redux";
+import { filterProducts, sortProducts } from "../actions/productActions";
 
-export default function Filter(props) {
-    return (
-        
+function Filter(props) {
+  return !props.filteredProducts ? (
+    <div>Loading...</div>
+  ) : (
     <div className="filter">
         <div className="filter-result">
-          {props.count} Products
+         {props.filteredProducts.length}Products
         </div>
         <div className="filter-sort">
           Order{" "}
-          <select value={props.size}
-                  onChange={props.sortproducts}  
+          <select value={props.sort}
+                  onChange={(e) =>
+                    props.sortProducts(
+                      props.filteredProducts,
+                      e.target.value
+                    )
+                  }  
           >
             <option value="latest">Latest</option>
             <option value="lowest">Lowest</option>
@@ -19,9 +27,11 @@ export default function Filter(props) {
         </div>
         <div className="filter-size">
           Filter{" "}
-          <select value={props.size} 
-            onChange={props.filterproducts}  
-       
+          <select
+            value={props.size}
+            onChange={(e) =>
+              props.filterProducts(props.products, e.target.value)
+            }
           >
             <option value="">ALL</option>
             <option value="Furniture">Furniture</option>
@@ -36,3 +46,15 @@ export default function Filter(props) {
         
 }
 
+export default connect(
+  (state) => ({
+    size: state.products.size,
+    sort: state.products.sort,
+    products: state.products.items,
+    filteredProducts: state.products.filteredItems,
+  }),
+  {
+    filterProducts,
+    sortProducts,
+  }
+)(Filter);
