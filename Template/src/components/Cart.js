@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
 import { connect } from "react-redux";
 import { removeFromCart } from "../actions/cartActions";
-import { createOrder, clearOrder } from "../actions/orderActions";
+import { createOrder, clearOrder , showOrder } from "../actions/orderActions";
 
 
 class Cart extends Component {
@@ -35,8 +35,13 @@ class Cart extends Component {
 
   closeModal = () => {
     this.props.clearOrder();
+   
   };
 
+  ReturnToShopping = () => {
+    this.props.clearOrder();
+    
+  };
 
 
 
@@ -92,6 +97,12 @@ class Cart extends Component {
                         </div>
                       ))}
                     </div>
+                  </li>
+
+                  <li>
+                    <button onClick={this.ReturnToShopping}>
+                      Return to shopping
+                    </button>
                   </li>
                 </ul>
               </div>
