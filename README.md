@@ -4,6 +4,8 @@ FRONTEND
 
 e-commerce application using React
 
+APPLICATION DEPLOYED AT : https://cloudwiryecommerce.herokuapp.com/
+
 APPLICATION SETUP :
 
 1. Clone the git repository and run npm start from terminal inside backend folder to enable server
